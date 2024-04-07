@@ -1,0 +1,39 @@
+.title{
+  padding-top: 20px;
+}
+.user-redux-body {
+  margin-top: 30px;
+
+  .form-row {
+    display: flex !important;
+
+    div {
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .image {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    label {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .preview-avt {
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgb(167, 167, 167);
+    // margin-top: 20px;
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-position: center;
+  }
+}
+

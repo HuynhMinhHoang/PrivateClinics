@@ -1,0 +1,10 @@
+v18.17.1 server
+
+v14.17.0 cline
+
+
+
+nvm list
+
+
+nvm use 18.17.1

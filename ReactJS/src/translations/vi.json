@@ -1,0 +1,68 @@
+{
+  "homeheader": {
+    "speciality": "Chuyên khoa",
+    "searchdoctor": "Tìm bác sĩ chuyên khoa",
+    "facilities": "Cơ sở y tế",
+    "chooseHospitalOrClinic": "Chọn bệnh viện phòng khám",
+    "doctor": "Bác sĩ",
+    "chooseGoodDoctor": "Chọn bác sĩ giỏi",
+    "examination": "Gói khám",
+    "generalHealth": "Khám sức khỏe tổng quát",
+    "support": "Hỗ trợ",
+    "welcome": "Xin chào"
+  },
+  "section": {
+    "medicalBackground": "NỀN TẢNG Y TẾ",
+    "comprehensiveHealthCare": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+    "specialistExamination": "Khám chuyên khoa",
+    "remoteExamination": "Khám từ xa",
+    "generalExamination": "Khám tổng quát",
+    "medicalTests": "Xét nghiệm y học",
+    "mentalHealth": "Sức khỏe tinh thần",
+    "dentalExamination": "Khám nha khoa",
+    "popularSpecialties": "Chuyên khoa phổ biến",
+    "seeMore": "Xem thêm"
+  },
+  "menu": {
+    "system": {
+      "header": "Hệ thống",
+      "system-administrator": {
+        "header": "Quản trị hệ thống",
+        "user-manage": "Quản lý người sử dụng",
+        "user-redux": "Quản lý UserRedux",
+        "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+      },
+      "system-parameter": {
+        "header": "Tham số hệ thống"
+      }
+    },
+    "admin": {
+      "manager-user": "Người dùng",
+      "manager-admin": "Quản lý admin",
+      "manager-doctor": "Quản lý bác sĩ",
+      "crud": "CRUD USER",
+      "crud-redux": "CRUD USER-REDUX",
+      "clinic": "Phòng khám",
+      "manager-clinic": "Quản lý phòng khám",
+      "specialty": "Chuyên khoa",
+      "manager-specialty": "Quản lý chuyên khoa",
+      "handbook": "Cẩm nang",
+      "manager-handbook": "Quản lý cẩm nang"
+    }
+  },
+
+  "manager-user": {
+    "add": "Thêm mới người dùng",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "firstName": "Họ",
+    "lastName": "Tên",
+    "address": "Địa chỉ",
+    "gender": "Giới tính",
+    "role": "Vai trò",
+    "phone": "Số điện thoại",
+    "position": "Chức danh",
+    "image": "Ảnh đại diện",
+    "save": "Lưu thông tin"
+  }
+}

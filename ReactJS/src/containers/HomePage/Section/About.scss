@@ -1,0 +1,22 @@
+.section-about {
+  // height: 300px;
+  padding: 50px 0px;
+  text-align: center;
+  background: url("../../../assets/sections2.png");
+
+  h3 {
+    font-size: 35px;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  .section-about-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .section-about-content-left {
+      margin-right: 100px;
+    }
+  }
+}
