@@ -35,11 +35,15 @@ class TableManageUser extends Component {
     this.props.deleteUsers(id);
   };
 
+  handleEditUser = (user) => {
+    this.props.handleEditUserFormParent(user);
+  };
+
   render() {
     let arrUsersReduxx = this.state.usersRedux;
     return (
-      <div className="users-container">
-        <div className="users-table">
+      <div className="users-containers">
+        <div className="users-tables">
           <table id="customers">
             <tbody>
               <tr>
@@ -48,6 +52,9 @@ class TableManageUser extends Component {
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Address</th>
+                <th>Gender</th>
+                <th>Position</th>
+                <th>Role</th>
                 <th>Actions</th>
               </tr>
               {arrUsersReduxx &&
@@ -61,9 +68,17 @@ class TableManageUser extends Component {
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
                         <td>{item.address}</td>
+                        <td>{item.gender}</td>
+                        <td>{item.positionId}</td>
+                        <td>{item.roleId}</td>
                         <td className="buttons">
-                          <button className="btn-edit" onClick={() => {}}>
-                            Edit
+                          <button
+                            className="btn-edit"
+                            onClick={() => {
+                              this.handleEditUser(item);
+                            }}
+                          >
+                            <i className="fas fa-edit"></i>
                           </button>
                           <button
                             className="btn-delete"
@@ -71,7 +86,7 @@ class TableManageUser extends Component {
                               this.handleDeleteUser(item.id);
                             }}
                           >
-                            Delete
+                            <i className="fas fa-trash-alt"></i>
                           </button>
                         </td>
                       </tr>
