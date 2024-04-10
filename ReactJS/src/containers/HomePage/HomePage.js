@@ -14,6 +14,8 @@ import "slick-carousel/slick/slick.css";
 import "./HomePage.scss";
 
 class HomePage extends Component {
+  // handleAfterChange = (event, slick, currentSlide) => {};
+
   render() {
     const settings = {
       dots: false,
@@ -21,6 +23,7 @@ class HomePage extends Component {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
+      // afterChange: this.handleAfterChange(),
     };
     return (
       <div>

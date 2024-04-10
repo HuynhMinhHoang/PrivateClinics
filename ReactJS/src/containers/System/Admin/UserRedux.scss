@@ -1,14 +1,25 @@
-.user-redux-container{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.container-main {
 }
-.title{
+
+.user-redux-container {
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+}
+.title {
+  text-align: center;
   padding-top: 20px;
+  font-size: 30px;
+  color: rgb(125, 0, 0);
+  font-weight: 600;
+  margin-top: 20px;
+  // margin-bottom: 50px;
 }
 .user-redux-body {
   margin-top: 30px;
-  width: 200%;
+  display: flex;
+  justify-content: center;
+  // width: 200%;
 
   .form-row {
     display: flex !important;
@@ -43,8 +54,7 @@
     background-position: center;
   }
 
-  .btn-warning{
+  .btn-warning {
     color: white;
   }
 }
-

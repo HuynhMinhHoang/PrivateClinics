@@ -1,7 +1,11 @@
+.users-containers {
+  display: flex;
+  justify-content: center;
+}
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 50%;
+  width: 100%;
 }
 
 #customers td,
@@ -12,7 +16,6 @@
 
 #customers th {
   text-align: center !important;
-
 }
 
 #customers tr:nth-child(even) {
@@ -32,21 +35,22 @@
 }
 
 .users-tables {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 90%;
   // padding: 30px 30px;
-  margin-right: 100px;
+  // margin-right: 100px;
 }
 
 .buttons {
   // width: 200px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
 .users-containers button.btn-edit {
   border-radius: 5px;
-  width: 25px;
-  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,13 +63,11 @@
 
 .users-containers button:first-child i {
   color: rgb(239, 195, 0);
-  font-size: 18px;
+  font-size: 27px;
 }
 
 .users-containers button.btn-delete {
   border-radius: 5px;
-  width: 25px;
-  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,5 +78,11 @@
 
 .users-containers button:last-child i {
   color: rgb(185, 0, 0);
-  font-size: 18px;
+  font-size: 27px;
+}
+
+
+.editor{
+  padding: 0px 100px;
+  margin-bottom: 50px;
 }

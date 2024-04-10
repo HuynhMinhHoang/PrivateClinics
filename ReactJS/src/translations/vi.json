@@ -21,6 +21,7 @@
     "mentalHealth": "Sức khỏe tinh thần",
     "dentalExamination": "Khám nha khoa",
     "popularSpecialties": "Chuyên khoa phổ biến",
+    "outstandingDoctorsOfTheWeek":"Bác sĩ nổi bật tuần qua",
     "seeMore": "Xem thêm"
   },
   "menu": {
@@ -38,8 +39,8 @@
     },
     "admin": {
       "manager-user": "Người dùng",
-      "manager-admin": "Quản lý admin",
-      "manager-doctor": "Quản lý bác sĩ",
+      "manager-admin": "Quản lý Admin",
+      "manager-doctor": "Quản lý Bác sĩ",
       "crud": "CRUD USER",
       "crud-redux": "CRUD USER-REDUX",
       "clinic": "Phòng khám",

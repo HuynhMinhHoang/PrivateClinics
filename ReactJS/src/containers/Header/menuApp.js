@@ -16,13 +16,13 @@ export const adminMenu = [
 
       //manager role
       {
-        name: "menu.admin.manager-admin",
-        link: "/system/user-admin",
+        name: "menu.admin.manager-doctor",
+        link: "/system/manager-doctor",
       },
 
       {
-        name: "menu.admin.manager-doctor",
-        link: "/system/user-doctor",
+        name: "menu.admin.manager-admin",
+        link: "/system/user-admin",
       },
     ],
   },

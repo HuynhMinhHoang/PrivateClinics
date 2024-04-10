@@ -202,12 +202,12 @@ class UserRedux extends Component {
     } = this.state;
     return (
       <>
-        <div className="title text-center">
+        <div className="title">
           <FormattedMessage id="manager-user.add" />
         </div>
         <div className="user-redux-container">
           <div>
-            <div className="user-redux-body d-flex justify-content-center">
+            <div className="user-redux-body">
               <div className="col-md-6">
                 <div>
                   <div className="form-row">
@@ -330,7 +330,7 @@ class UserRedux extends Component {
                           genderInfo.length > 0 &&
                           genderInfo.map((item, index) => {
                             return (
-                              <option key={index} value={item.key}>
+                              <option key={index} value={item.keyMap}>
                                 {language === LANGUAGES.VI
                                   ? item.valueVi
                                   : item.valueEn}
@@ -353,11 +353,11 @@ class UserRedux extends Component {
                         }}
                         value={position}
                       >
-                        {roleInfo &&
-                          roleInfo.length > 0 &&
-                          roleInfo.map((item, index) => {
+                        {positionInfo &&
+                          positionInfo.length > 0 &&
+                          positionInfo.map((item, index) => {
                             return (
-                              <option key={index} value={item.key}>
+                              <option key={index} value={item.keyMap}>
                                 {language === LANGUAGES.VI
                                   ? item.valueVi
                                   : item.valueEn}
@@ -378,11 +378,11 @@ class UserRedux extends Component {
                         }}
                         value={role}
                       >
-                        {positionInfo &&
-                          positionInfo.length > 0 &&
-                          positionInfo.map((item, index) => {
+                        {roleInfo &&
+                          roleInfo.length > 0 &&
+                          roleInfo.map((item, index) => {
                             return (
-                              <option key={index} value={item.key}>
+                              <option key={index} value={item.keyMap}>
                                 {language === LANGUAGES.VI
                                   ? item.valueVi
                                   : item.valueEn}
