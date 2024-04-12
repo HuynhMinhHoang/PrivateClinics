@@ -102,7 +102,7 @@ let getDetailDoctorByIdService = (idDoctor) => {
         let data = await db.User.findOne({
           where: { id: idDoctor },
           attributes: {
-            exclude: ["password", "image"],
+            exclude: ["password"],
           },
           include: [
             //markdown
@@ -121,6 +121,10 @@ let getDetailDoctorByIdService = (idDoctor) => {
           ],
           nest: true,
         });
+
+        if (data && data.image) {
+          data.image = new Buffer(data.image, "base64").toString("binary");
+        }
         resvole({
           errCode: 0,
           data: data,

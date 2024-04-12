@@ -100,78 +100,81 @@ class HomeHearder extends Component {
             </div>
           </div>
         </div>
-        <div className="home-header-banner">
-          <div className="content-up">
-            <div className="title1">
-              <FormattedMessage id="section.medicalBackground" />
+
+        {this.props.isShowBanner === true && (
+          <div className="home-header-banner">
+            <div className="content-up">
+              <div className="title1">
+                <FormattedMessage id="section.medicalBackground" />
+              </div>
+              <div className="title2">
+                <FormattedMessage id="section.comprehensiveHealthCare" />
+              </div>
+              <div className="search">
+                <i className="fas fa-search"></i>
+                <input type="text" placeholder="Please enter search..." />
+              </div>
             </div>
-            <div className="title2">
-              <FormattedMessage id="section.comprehensiveHealthCare" />
-            </div>
-            <div className="search">
-              <i className="fas fa-search"></i>
-              <input type="text" placeholder="Please enter search..." />
+
+            <div className="content-down">
+              <div className="options">
+                <div className="options-child">
+                  <div className="icon-child">
+                    <i className="fas fa-hospital"></i>
+                  </div>
+                  <div className="text-child">
+                    <FormattedMessage id="section.specialistExamination" />
+                  </div>
+                </div>
+
+                <div className="options-child">
+                  <div className="icon-child">
+                    <i class="fas fa-phone-volume"></i>
+                  </div>
+                  <div className="text-child">
+                    <FormattedMessage id="section.remoteExamination" />
+                  </div>
+                </div>
+
+                <div className="options-child">
+                  <div className="icon-child">
+                    <i class="fas fa-book"></i>
+                  </div>
+                  <div className="text-child">
+                    <FormattedMessage id="section.generalExamination" />
+                  </div>
+                </div>
+
+                <div className="options-child">
+                  <div className="icon-child">
+                    <i class="fas fa-syringe"></i>
+                  </div>
+                  <div className="text-child">
+                    <FormattedMessage id="section.medicalTests" />
+                  </div>
+                </div>
+
+                <div className="options-child">
+                  <div className="icon-child">
+                    <i class="fas fa-universal-access"></i>
+                  </div>
+                  <div className="text-child">
+                    <FormattedMessage id="section.mentalHealth" />
+                  </div>
+                </div>
+
+                <div className="options-child">
+                  <div className="icon-child">
+                    <i class="fas fa-bed"></i>
+                  </div>
+                  <div className="text-child">
+                    <FormattedMessage id="section.dentalExamination" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="content-down">
-            <div className="options">
-              <div className="options-child">
-                <div className="icon-child">
-                  <i className="fas fa-hospital"></i>
-                </div>
-                <div className="text-child">
-                  <FormattedMessage id="section.specialistExamination" />
-                </div>
-              </div>
-
-              <div className="options-child">
-                <div className="icon-child">
-                  <i class="fas fa-phone-volume"></i>
-                </div>
-                <div className="text-child">
-                  <FormattedMessage id="section.remoteExamination" />
-                </div>
-              </div>
-
-              <div className="options-child">
-                <div className="icon-child">
-                  <i class="fas fa-book"></i>
-                </div>
-                <div className="text-child">
-                  <FormattedMessage id="section.generalExamination" />
-                </div>
-              </div>
-
-              <div className="options-child">
-                <div className="icon-child">
-                  <i class="fas fa-syringe"></i>
-                </div>
-                <div className="text-child">
-                  <FormattedMessage id="section.medicalTests" />
-                </div>
-              </div>
-
-              <div className="options-child">
-                <div className="icon-child">
-                  <i class="fas fa-universal-access"></i>
-                </div>
-                <div className="text-child">
-                  <FormattedMessage id="section.mentalHealth" />
-                </div>
-              </div>
-
-              <div className="options-child">
-                <div className="icon-child">
-                  <i class="fas fa-bed"></i>
-                </div>
-                <div className="text-child">
-                  <FormattedMessage id="section.dentalExamination" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
       </React.Fragment>
     );
   }

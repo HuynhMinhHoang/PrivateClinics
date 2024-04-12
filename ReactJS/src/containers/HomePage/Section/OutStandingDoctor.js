@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./OutStandingDoctor.scss";
 import { FormattedMessage } from "react-intl";
@@ -8,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import banner1 from "../../../assets/outstanding-doctor/doctor1.jpg";
 import * as actions from "../../../store/actions";
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils/";
+import { Redirect, withRouter } from "react-router-dom";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
@@ -33,6 +33,10 @@ class OutStandingDoctor extends Component {
     this.props.changeLangugeAppRedux(language);
   };
 
+  handleViewDetailDoctor = (idDoctor) => {
+    this.props.history.push(`/detail-doctor/${idDoctor}`);
+  };
+
   render() {
     let topDoctorList = this.state.arrDoctors;
     let language = this.props.language;
@@ -43,7 +47,6 @@ class OutStandingDoctor extends Component {
         <div className="section-content">
           <div className="section-header">
             <span>
-    
               <FormattedMessage id="section.outstandingDoctorsOfTheWeek" />
             </span>
             <button>
@@ -64,7 +67,12 @@ class OutStandingDoctor extends Component {
                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                 return (
                   <div className="img-customize" key={index}>
-                    <div className="item-customize">
+                    <div
+                      className="item-customize"
+                      onClick={() => {
+                        this.handleViewDetailDoctor(item.id);
+                      }}
+                    >
                       <div className="imgDoctor">
                         <img src={imageBase64} />
                       </div>
@@ -95,4 +103,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)
+);
