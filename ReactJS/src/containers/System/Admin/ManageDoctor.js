@@ -8,12 +8,6 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
 class ManageDoctor extends Component {
   constructor(props) {
     super(props);
@@ -22,12 +16,23 @@ class ManageDoctor extends Component {
       contentMarkdown: "",
       selectDoctor: null,
       description: "",
+
+      listDoctor: [],
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getAllDoctor();
+  }
 
-  componentDidUpdate() {}
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.listAllDoctor !== this.props.listAllDoctor) {
+      let dataSelect = this.dataInputSelect(this.props.listAllDoctor);
+      this.setState({
+        listDoctor: dataSelect,
+      });
+    }
+  }
 
   mdParser = new MarkdownIt();
 
@@ -36,14 +41,35 @@ class ManageDoctor extends Component {
       contentHTML: html,
       contentMarkdown: text,
     });
-    // console.log("handleEditorChange", html, text);
+    console.log("handleEditorChange", html, text);
   };
 
   handleSaveContentMarkdown = () => {
+    let checkInput = this.checkValidateInput();
+    if (checkInput === false) return;
+    this.props.saveInfoDoctor({
+      contentHTML: this.state.contentHTML,
+      contentMarkDown: this.state.contentMarkdown,
+      description: this.state.description,
+      doctorId: this.state.selectDoctor.value,
+    });
     console.log("===", this.state);
   };
 
-  handleChange = (selectDoctor) => {
+  checkValidateInput = () => {
+    let flag = true;
+    const arrCheck = ["selectDoctor", "description", "contentMarkdown"];
+    for (let i = 0; i < arrCheck.length; i++) {
+      if (!this.state[arrCheck[i]]) {
+        flag = false;
+        alert("Vui lòng điền thông tin " + arrCheck[i] + "!");
+        break;
+      }
+    }
+    return flag;
+  };
+
+  handleChangeSelectDoctor = (selectDoctor) => {
     this.setState({ selectDoctor: selectDoctor });
   };
 
@@ -51,13 +77,24 @@ class ManageDoctor extends Component {
     this.setState({
       description: e.target.value,
     });
-    // console.log("==", this.state.description);
+  };
+
+  dataInputSelect = (inputdata) => {
+    let result = [];
+    if (inputdata && inputdata.length > 0) {
+      inputdata.map((item, index) => {
+        let object = {};
+
+        object.value = item.id;
+        object.label = `${item.firstName} ${item.lastName}`;
+        result.push(object);
+      });
+    }
+    return result;
   };
 
   render() {
-    // console.log("==", this.state.contentHTML);
-    // console.log("==", this.state.contentMarkdown);
-
+    console.log("all", this.state);
     return (
       <>
         <div className="title">
@@ -69,8 +106,8 @@ class ManageDoctor extends Component {
             <label>Chọn Bác sĩ</label>
             <Select
               value={this.state.selectDoctor}
-              onChange={this.handleChange}
-              options={options}
+              onChange={this.handleChangeSelectDoctor}
+              options={this.state.listDoctor}
               className="select"
             />
           </div>
@@ -110,13 +147,14 @@ class ManageDoctor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // listUsers: state.admin.users,
+    listAllDoctor: state.admin.allDoctor,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getAllUsers: () => dispatch(actions.getAllUsers()),
+    getAllDoctor: () => dispatch(actions.fetchAllDoctor()),
+    saveInfoDoctor: (data) => dispatch(actions.saveInfoDoctor(data)),
   };
 };
 

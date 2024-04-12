@@ -39,6 +39,102 @@ let getTopDoctorHome = (limit) => {
   });
 };
 
+let getAllDoctorService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let doctor = await db.User.findAll({
+        where: {
+          roleId: "R2",
+        },
+        attributes: {
+          exclude: ["password", "image"],
+        },
+      });
+
+      resolve({
+        errCode: 0,
+        data: doctor,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let saveInfoDoctorService = (input) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!input.doctorId || !input.contentHTML || !input.contentMarkDown) {
+        console.log("input");
+        resolve({
+          errCode: 1,
+          errMassage: "Error input!!!",
+        });
+      } else {
+        await db.MarkDown.create({
+          contentHTML: input.contentHTML,
+          contentMarkDown: input.contentMarkDown,
+          description: input.description,
+          doctorId: input.doctorId,
+        });
+        resolve({
+          errCode: 0,
+          errMassage: "Save info doctor success!!",
+        });
+      }
+    } catch (e) {
+      console.log("error", e);
+
+      reject(e);
+    }
+  });
+};
+
+let getDetailDoctorByIdService = (idDoctor) => {
+  return new Promise(async (resvole, reject) => {
+    try {
+      if (!idDoctor) {
+        resvole({
+          errCode: 1,
+          errMassage: "Lỗi input !!",
+        });
+      } else {
+        let data = await db.User.findOne({
+          where: { id: idDoctor },
+          attributes: {
+            exclude: ["password", "image"],
+          },
+          include: [
+            //markdown
+            {
+              model: db.MarkDown,
+              attributes: {
+                exclude: ["createdAt", "updatedAt", "clinicId", "specialtyId"],
+              },
+            },
+            //allcode
+            {
+              model: db.Allcode,
+              as: "positionData",
+              attributes: ["valueEn", "valueVi"],
+            },
+          ],
+          nest: true,
+        });
+        resvole({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
+  getAllDoctorService: getAllDoctorService,
+  saveInfoDoctorService: saveInfoDoctorService,
+  getDetailDoctorByIdService: getDetailDoctorByIdService,
 };

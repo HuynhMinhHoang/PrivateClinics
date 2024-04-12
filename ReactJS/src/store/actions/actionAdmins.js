@@ -6,6 +6,8 @@ import {
   deleteUser,
   editUser,
   getTopDoctorHomeService,
+  getAllDoctorService,
+  saveInfoDoctorService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -227,3 +229,58 @@ export const fetchTopDoctorSuccess = (data) => ({
 export const fetchTopDoctorFailed = () => ({
   type: actionTypes.FETCH_TOP_DOCTOR_FAILED,
 });
+
+//fetch all doctor
+export const fetchAllDoctor = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllDoctorService();
+      // console.log("actions admin res ==========", res.data);
+
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllDoctorSuccess(res.data));
+      } else {
+        dispatch(fetchAllDoctorFailed());
+      }
+    } catch (e) {
+      dispatch(fetchAllDoctorFailed());
+      console.log("fetchAllDoctorFailed Error", e);
+    }
+  };
+};
+
+export const fetchAllDoctorSuccess = (data) => ({
+  type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+  data: data,
+});
+
+export const fetchAllDoctorFailed = () => ({
+  type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+});
+
+//create all doctor
+export const saveInfoDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await saveInfoDoctorService(data);
+      if (res && res.errCode === 0) {
+        toast.success("Lưu thông tin thành công!");
+        dispatch({
+          type: actionTypes.CREATE_INFO_DOCTOR_SUCCESS,
+        });
+      } else {
+        console.log("error", res);
+        toast.error("Lưu thông tin thất bại!");
+        dispatch({
+          type: actionTypes.CREATE_INFO_DOCTOR_FAILED,
+        });
+      }
+    } catch (e) {
+      toast.error("Lưu thông tin Bác sĩ thất bại!");
+
+      dispatch({
+        type: actionTypes.CREATE_INFO_DOCTOR_FAILED,
+      });
+    }
+  };
+};
