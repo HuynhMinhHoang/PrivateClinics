@@ -50,6 +50,10 @@
       "handbook": "Cẩm nang",
       "manager-handbook": "Quản lý cẩm nang"
     }
+    ,
+    "doctor":{
+      "manager-schedule" : "Quản lý kế hoạch khám bệnh"
+    }
   },
 
   "manager-user": {

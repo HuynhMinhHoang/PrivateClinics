@@ -64,23 +64,50 @@ let getAllDoctorService = () => {
 let saveInfoDoctorService = (input) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!input.doctorId || !input.contentHTML || !input.contentMarkDown) {
+      if (
+        !input.doctorId ||
+        !input.contentHTML ||
+        !input.contentMarkDown ||
+        !input.action
+      ) {
         console.log("input");
         resolve({
           errCode: 1,
           errMassage: "Error input!!!",
         });
       } else {
-        await db.MarkDown.create({
-          contentHTML: input.contentHTML,
-          contentMarkDown: input.contentMarkDown,
-          description: input.description,
-          doctorId: input.doctorId,
-        });
-        resolve({
-          errCode: 0,
-          errMassage: "Save info doctor success!!",
-        });
+        if (input.action === "CREATE") {
+          await db.MarkDown.create({
+            contentHTML: input.contentHTML,
+            contentMarkDown: input.contentMarkDown,
+            description: input.description,
+            doctorId: input.doctorId,
+          });
+          resolve({
+            errCode: 0,
+            errMassage: "Create info doctor success!!",
+          });
+        } else if (input.action === "EDIT") {
+          let doctorById = await db.MarkDown.findOne({
+            where: { doctorId: input.doctorId },
+            // raw: true,
+          });
+
+          if (doctorById) {
+            doctorById.contentHTML = input.contentHTML;
+            doctorById.contentMarkDown = input.contentMarkDown;
+            doctorById.description = input.description;
+
+            await doctorById.save();
+            // console.log("=======");
+            resolve({
+              errCode: 0,
+              errMassage: "Update info doctor success!!",
+            });
+          }
+          // console.log("=======", input.action);
+          console.log("update", doctorById);
+        }
       }
     } catch (e) {
       console.log("error", e);

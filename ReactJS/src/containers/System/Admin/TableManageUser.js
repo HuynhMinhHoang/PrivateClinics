@@ -65,43 +65,41 @@ class TableManageUser extends Component {
                   arrUsersReduxx.length > 0 &&
                   arrUsersReduxx.map((item, index) => {
                     return (
-                      <>
-                        <tr key={index}>
-                          <td>{item.id}</td>
-                          <td>{item.email}</td>
-                          <td>{item.firstName}</td>
-                          <td>{item.lastName}</td>
-                          <td>{item.address}</td>
-                          <td>{item.gender}</td>
-                          <td>{item.positionId}</td>
-                          <td>{item.roleId}</td>
-                          <td className="buttons">
-                            <button
-                              className="btn-edit"
-                              onClick={() => {
-                                this.handleEditUser(item);
-                              }}
-                            >
-                              <i className="fas fa-edit"></i>
-                            </button>
-                            <button
-                              className="btn-delete"
-                              onClick={() => {
-                                this.handleDeleteUser(item.id);
-                              }}
-                            >
-                              <i className="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      </>
+                      <tr key={index}>
+                        <td>{item.id}</td>
+                        <td>{item.email}</td>
+                        <td>{item.firstName}</td>
+                        <td>{item.lastName}</td>
+                        <td>{item.address}</td>
+                        <td>{item.gender}</td>
+                        <td>{item.positionId}</td>
+                        <td>{item.roleId}</td>
+                        <td className="buttons">
+                          <button
+                            className="btn-edit"
+                            onClick={() => {
+                              this.handleEditUser(item);
+                            }}
+                          >
+                            <i className="fas fa-edit"></i>
+                          </button>
+                          <button
+                            className="btn-delete"
+                            onClick={() => {
+                              this.handleDeleteUser(item.id);
+                            }}
+                          >
+                            <i className="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
                     );
                   })}
               </tbody>
             </table>
           </div>
         </div>
-                  
+
         {/* <div className="editor">
           <MdEditor
             style={{ height: "500px", border: "2px solid gray" }}

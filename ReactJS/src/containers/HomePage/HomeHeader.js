@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./HomeHeader.scss";
 import { LANGUAGES } from "../../utils/constant";
 import { FormattedMessage } from "react-intl";
-
+import { Redirect, withRouter } from "react-router-dom";
+import { path } from "../../utils";
 import { changeLanguageApp } from "../../store/actions/";
 
 class HomeHearder extends Component {
@@ -20,6 +20,10 @@ class HomeHearder extends Component {
     this.setState({ selectedLanguage: language });
   };
 
+  returnHome = () => {
+    this.props.history.push(`${path.HOMEPAGE}`);
+  };
+
   render() {
     const { selectedLanguage } = this.state;
 
@@ -29,7 +33,12 @@ class HomeHearder extends Component {
           <div className="home-header-content">
             <div className="left-content">
               <i className="fas fa-bars menu"></i>
-              <div className="header-logo"></div>
+              <div
+                className="header-logo"
+                onClick={() => {
+                  this.returnHome();
+                }}
+              ></div>
             </div>
             <div className="center-content">
               <div className="child-content">
@@ -75,10 +84,10 @@ class HomeHearder extends Component {
               </div>
             </div>
             <div className="right-content">
-              <div className="support">
+              {/* <div className="support">
                 <i className="fas fa-question-circle"></i>
                 <FormattedMessage id="homeheader.support" />
-              </div>
+              </div> */}
               <div
                 className={`flag ${
                   selectedLanguage === LANGUAGES.VI ? "active" : ""
@@ -193,4 +202,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHearder);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeHearder)
+);
