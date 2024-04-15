@@ -284,3 +284,27 @@ export const saveInfoDoctor = (data) => {
     }
   };
 };
+
+//fetch chedule hours
+export const fetchCheduleHours = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("TIME");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_CHEDULE_HOURS_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        console.log("error", res);
+        dispatch({
+          type: actionTypes.FETCH_CHEDULE_HOURS_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_CHEDULE_HOURS_FAILED,
+      });
+    }
+  };
+};

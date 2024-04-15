@@ -1,0 +1,68 @@
+.container-chedule {
+  .bg-input {
+    display: flex;
+    justify-content: space-evenly;
+
+    .content-right {
+      .select {
+        margin-top: 10px;
+        width: 600px;
+      }
+      .DatePicker {
+        margin-top: 10px;
+        width: 600px;
+      }
+    }
+    .content-left {
+      display: flex;
+      flex-direction: column;
+      label {
+      }
+      input {
+        margin-top: 10px !important;
+        width: 600px !important;
+        padding: 5px !important;
+      }
+    }
+  }
+
+  .bg-selectDay {
+    // border: 1px solid red;
+    // height: 500px;
+    width: 80%;
+    margin: 30px auto;
+
+    .div-hours {
+      display: flex;
+      justify-content: center;
+      .div-hours-item {
+        cursor: pointer;
+        margin: 40px 20px;
+        width: 150px;
+        padding: 8px;
+        border-radius: 5px;
+        text-align: center;
+        transition: 0.3s;
+        border: none;
+        background-color: rgb(239, 239, 239);
+        font-weight: 500;
+      }
+      .div-hours-item:hover {
+        background-color: rgb(207, 207, 207);
+      }
+
+      .active-hours-item {
+        cursor: pointer;
+        margin: 40px 20px;
+        width: 150px;
+        padding: 8px;
+        border-radius: 5px;
+        text-align: center;
+        transition: 0.3s;
+        border: none;
+        background-color: rgb(127, 227, 255);
+        font-weight: 500;
+      }
+    }
+  }
+}

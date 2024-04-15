@@ -8,6 +8,7 @@ const initialState = {
   users: [],
   topDoctor: [],
   allDoctor: [],
+  hours: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -97,6 +98,18 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_ALL_DOCTOR_FAILED:
       state.allDoctor = [];
+      return {
+        ...state,
+      };
+
+    //chedule hours
+    case actionTypes.FETCH_CHEDULE_HOURS_SUCCESS:
+      state.hours = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_CHEDULE_HOURS_FAILED:
+      state.hours = [];
       return {
         ...state,
       };

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import db from "../models/index";
 
 let getTopDoctorHome = (limit) => {
@@ -163,9 +164,67 @@ let getDetailDoctorByIdService = (idDoctor) => {
   });
 };
 
+let createScheduleService = (data) => {
+  return new Promise(async (resvole, reject) => {
+    try {
+      if (!data) {
+        resvole({
+          errCode: 1,
+          errMassage: "Vui lòng điền thông tin!",
+        });
+      } else {
+        let schedule = data.arrSchedule;
+        // console.log(schedule);
+        schedule = schedule.map((item) => {
+          item.maxNumber = 10;
+          item.date = new Date(item.date).getTime();
+          return item;
+        });
+
+        let existing = await db.Schedule.findAll({
+          where: { doctorId: data.doctorId, date: data.date },
+          attributes: ["doctorId", "date", "timeType", "maxNumber"],
+          raw: true,
+        });
+
+        //convert date
+        if (existing && existing.length > 0) {
+          existing = existing.map((item) => {
+            item.date = new Date(item.date).getTime();
+
+            return item;
+          });
+        }
+        //compare
+        let toCreate = _.differenceWith(schedule, existing, (a, b) => {
+          return a.timeType === b.timeType;
+          // && a.date === b.date;
+        });
+
+        console.log("schedule===========1111111111", schedule);
+        console.log("existing===========2222222222", existing);
+
+        console.log("toCreate===========", toCreate);
+
+        if (toCreate && toCreate.length > 0) {
+          await db.Schedule.bulkCreate(toCreate);
+        }
+
+        resvole({
+          errCode: 0,
+          errMassage: "OK",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctorService: getAllDoctorService,
   saveInfoDoctorService: saveInfoDoctorService,
   getDetailDoctorByIdService: getDetailDoctorByIdService,
+  createScheduleService: createScheduleService,
 };

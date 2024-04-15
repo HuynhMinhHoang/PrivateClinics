@@ -54,10 +54,22 @@ let getDetailDoctorById = async (req, res) => {
     });
   }
 };
+let createSchedule = async (req, res) => {
+  try {
+    let data = await doctorService.createScheduleService(req.body);
+    return res.status(200).json(data);
+  } catch (e) {
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Lỗi server!!",
+    });
+  }
+};
 
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctor: getAllDoctor,
   saveInfoDoctor: saveInfoDoctor,
   getDetailDoctorById: getDetailDoctorById,
+  createSchedule: createSchedule,
 };
