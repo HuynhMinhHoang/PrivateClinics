@@ -180,18 +180,24 @@ let createScheduleService = (data) => {
           item.date = new Date(item.date).getTime();
           return item;
         });
+        console.log("schedule===========1111111111", schedule);
+
+        let doctorId = data.doctorId;
+        let date = new Date(data.date).getTime();
+        // console.log("============================date====", doctorId, date);
 
         let existing = await db.Schedule.findAll({
-          where: { doctorId: data.doctorId, date: data.date },
+          where: { doctorId: doctorId, date: date },
           attributes: ["doctorId", "date", "timeType", "maxNumber"],
           raw: true,
         });
+        console.log("existing===========2222222222", existing);
 
         //convert date
         if (existing && existing.length > 0) {
           existing = existing.map((item) => {
             item.date = new Date(item.date).getTime();
-
+            console.log("ifffffexisting");
             return item;
           });
         }
@@ -200,10 +206,6 @@ let createScheduleService = (data) => {
           return a.timeType === b.timeType;
           // && a.date === b.date;
         });
-
-        console.log("schedule===========1111111111", schedule);
-        console.log("existing===========2222222222", existing);
-
         console.log("toCreate===========", toCreate);
 
         if (toCreate && toCreate.length > 0) {
@@ -221,10 +223,37 @@ let createScheduleService = (data) => {
   });
 };
 
+let getScheduleByDateService = (doctorId, date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId || !date) {
+        resolve({
+          errCode: 1,
+          errMassage: "Thiếu dữ liệu !!",
+        });
+      } else {
+        let data = await db.Schedule.findAll({
+          where: { doctorId: doctorId, date: date },
+        });
+
+        if (!data) data = [];
+
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctorService: getAllDoctorService,
   saveInfoDoctorService: saveInfoDoctorService,
   getDetailDoctorByIdService: getDetailDoctorByIdService,
   createScheduleService: createScheduleService,
+  getScheduleByDateService: getScheduleByDateService,
 };

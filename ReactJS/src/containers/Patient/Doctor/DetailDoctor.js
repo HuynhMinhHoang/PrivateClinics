@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailInfoDoctorService } from "../../../services/userService";
+import DoctorSchedule from "./DoctorSchedule";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +43,7 @@ class DetailDoctor extends Component {
                 }
               />
             </div>
+
             <div className="text-detail">
               {detailDoctor &&
                 detailDoctor.positionData &&
@@ -59,6 +61,15 @@ class DetailDoctor extends Component {
                 )}
             </div>
           </div>
+          {/* schedule */}
+          <div className="bg-schedule">
+            <div className="content-left">
+              <DoctorSchedule doctorId={detailDoctor.id} />
+            </div>
+
+            <div className="content-right">right</div>
+          </div>
+
           <div className="container-detail-content">
             {detailDoctor &&
               detailDoctor.MarkDown &&

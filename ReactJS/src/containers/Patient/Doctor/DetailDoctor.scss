@@ -1,6 +1,27 @@
 .container-detail-doctor {
   //   border: 1px solid red;
 
+  .bg-schedule {
+    border: 1px solid red;
+    width: 70%;
+    height: 200px;
+    margin: 0 auto;
+    // padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+
+    .content-right {
+      width: 30%;
+      // border: 1px solid rgb(9, 9, 9);
+    }
+
+    .content-left {
+      width: 70%;
+      border: 1px solid rgb(60, 255, 0);
+    }
+  }
+
   .bg-content-detail {
     display: flex;
     justify-content: start;
