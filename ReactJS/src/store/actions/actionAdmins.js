@@ -258,7 +258,7 @@ export const fetchAllDoctorFailed = () => ({
   type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
 });
 
-//create all doctor
+//create markdown doctor
 export const saveInfoDoctor = (data) => {
   return async (dispatch, getState) => {
     try {
@@ -304,6 +304,78 @@ export const fetchCheduleHours = () => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_CHEDULE_HOURS_FAILED,
+      });
+    }
+  };
+};
+
+//fetch doctor_info prive
+export const fetchDoctorInfoPrive = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("PRICE");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFO_PRICE_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        console.log("error", res);
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFO_PRICE_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DOCTOR_INFO_PRICE_FAILED,
+      });
+    }
+  };
+};
+
+//fetch doctor_info payment
+export const fetchDoctorInfoPayment = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("PAYMENT");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFO_PAYMENT_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        console.log("error", res);
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFO_PAYMENT_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DOCTOR_INFO_PAYMENT_FAILED,
+      });
+    }
+  };
+};
+
+//fetch doctor_info province
+export const fetchDoctorInfoProvine = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("PROVINCE");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFO_PROVINCE_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        console.log("error", res);
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFO_PROVINCE_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DOCTOR_INFO_PROVINCE_FAILED,
       });
     }
   };

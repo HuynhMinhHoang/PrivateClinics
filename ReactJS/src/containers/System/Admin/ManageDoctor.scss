@@ -21,6 +21,7 @@
     .select {
       margin-top: 10px;
       width: 600px;
+      height: 40px;
     }
   }
 
@@ -35,7 +36,9 @@
 
     textarea {
       width: 600px;
-      height: 100px;
+      height: 43px;
+      border-color: rgb(204, 204, 204);
+      border-radius: 4px;
     }
   }
 }
@@ -73,5 +76,41 @@
 
   .btnUpdate:hover {
     background: #d80000;
+  }
+}
+
+.content-input-container {
+  // border: 1px solid red;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 50px;
+
+  .content-input-select {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-bottom: 10px;
+    }
+    .select {
+      width: 400px;
+      // height: 43px;
+      // border: none;
+    }
+  }
+
+  .content-input {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-bottom: 10px;
+    }
+    input {
+      width: 400px;
+      height: 43px;
+      border: 1px solid rgb(204, 204, 204);
+
+      border-radius: 4px;
+    }
   }
 }

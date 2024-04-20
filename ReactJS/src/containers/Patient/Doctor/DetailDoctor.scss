@@ -2,23 +2,33 @@
   //   border: 1px solid red;
 
   .bg-schedule {
-    border: 1px solid red;
+    // border: 1px solid red;
     width: 70%;
-    height: 200px;
+    height: auto;
     margin: 0 auto;
     // padding: 20px;
     display: flex;
     justify-content: space-between;
     // align-items: center;
 
+    .br {
+      background-color: #ececec;
+      width: 2px;
+      height: 120px;
+    }
+
     .content-right {
-      width: 30%;
+      width: 40%;
       // border: 1px solid rgb(9, 9, 9);
     }
 
+    .bg-br {
+      width: 3%;
+    }
+
     .content-left {
-      width: 70%;
-      border: 1px solid rgb(60, 255, 0);
+      width: 50%;
+      // border: 1px solid rgb(60, 255, 0);
     }
   }
 
@@ -26,7 +36,9 @@
     display: flex;
     justify-content: start;
     align-items: start;
-    padding: 40px 300px;
+    padding: 40px 0px;
+    width: 70%;
+    margin: auto;
 
     .avt-detail {
       height: 150px;

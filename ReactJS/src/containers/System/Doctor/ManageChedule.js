@@ -18,7 +18,7 @@ class ManageChedule extends Component {
 
       listDoctor: [],
       listTime: [],
-      currentDate: new Date(),
+      currentDate: new Date() - 1,
     };
   }
 
@@ -130,6 +130,7 @@ class ManageChedule extends Component {
   render() {
     let { listTime } = this.state;
     // console.log("listTimelistTime", listTime);
+    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
     return (
       <>
         <div className="container-chedule">
@@ -148,7 +149,7 @@ class ManageChedule extends Component {
               <label>Chọn ngày</label>
               <DatePicker
                 onChange={this.handleOnchangeDatePicker}
-                minDate={new Date()}
+                minDate={yesterday}
                 value={this.state.currentDate}
               />
             </div>

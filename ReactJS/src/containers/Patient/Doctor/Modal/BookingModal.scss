@@ -1,0 +1,77 @@
+.custom-modal {
+  max-width: 800px;
+  //   z-index: 999;
+}
+
+.booking-container {
+  padding: 20px;
+}
+
+.modal-header {
+  background-color: #49bce2;
+  color: #fff;
+  text-align: center;
+  height: 50px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+
+  h5 {
+    font-weight: 500;
+    margin: 0px auto;
+    margin-top: 5px;
+    padding: 0px;
+    font-size: 22px;
+  }
+}
+
+.modal-footer {
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 20px;
+
+  .row {
+  }
+}
+
+.modal-content {
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 80px;
+  padding: 25px;
+  border: none;
+}
+
+.modal-dialog {
+  max-width: 800px;
+}
+
+.form-group-input {
+  margin: 15px 0px;
+}
+
+.form-group-input:first-child {
+  margin: 0px;
+}
+
+.btn-apply {
+  background-color: #0dcaf0;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-apply:hover {
+  background-color: #08adce;
+}
+
+.btn-cancel {
+  background-color: #9c0000;
+  border: none;
+  transition: 0.3s;
+}
+.btn-cancel:hover {
+  background-color: #700000;
+}

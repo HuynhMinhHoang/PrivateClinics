@@ -4,11 +4,14 @@ import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailInfoDoctorService } from "../../../services/userService";
 import DoctorSchedule from "./DoctorSchedule";
+import DoctorExtraInfo from "./DoctorExtraInfo";
+
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       detailDoctor: {},
+      currentDoctorId: "",
     };
   }
 
@@ -18,6 +21,9 @@ class DetailDoctor extends Component {
       this.props.match.params &&
       this.props.match.params.id
     ) {
+      this.setState({
+        currentDoctorId: this.props.match.params.id,
+      });
       let res = await getDetailInfoDoctorService(this.props.match.params.id);
       if (res && res.errCode === 0) {
         this.setState({
@@ -64,10 +70,12 @@ class DetailDoctor extends Component {
           {/* schedule */}
           <div className="bg-schedule">
             <div className="content-left">
-              <DoctorSchedule doctorId={detailDoctor.id} />
+              <DoctorSchedule doctorId={this.state.currentDoctorId} />
             </div>
 
-            <div className="content-right">right</div>
+            <div className="content-right">
+              <DoctorExtraInfo doctorId={this.state.currentDoctorId} />
+            </div>
           </div>
 
           <div className="container-detail-content">
