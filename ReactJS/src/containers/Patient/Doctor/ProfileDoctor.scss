@@ -6,6 +6,27 @@
   width: 100%;
   margin: auto;
 
+  .bg-info-doctor {
+    display: flex;
+    align-items: center;
+  }
+
+  .price-modal {
+    // margin: 10px 20px 0px 20px;
+    display: flex;
+    align-items: center;
+
+    .price {
+      font-weight: 500;
+      color: #d01a1d;
+      margin-left: 5px;
+    }
+
+    .time {
+      //   color: black;
+    }
+  }
+
   .avt-detail {
     height: 70px;
     width: 70px;
@@ -21,7 +42,7 @@
 
   .text-detail {
     width: 50%;
-    margin-left: 20px;
+    // margin-left: 20px;
 
     .textName-detail {
       font-size: 20px;
@@ -32,21 +53,5 @@
       font-size: 18px;
       color: gray;
     }
-  }
-}
-
-.price-modal {
-  // margin: 10px 20px 0px 20px;
-  display: flex;
-  align-items: center;
-
-  .price {
-    font-weight: 500;
-    color: #d01a1d;
-    margin-left: 5px;
-  }
-
-  .time {
-    //   color: black;
   }
 }

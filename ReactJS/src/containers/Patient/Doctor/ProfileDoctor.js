@@ -36,7 +36,7 @@ class ProfileDoctor extends Component {
 
   render() {
     let { doctorInfo } = this.state;
-    console.log("==============doctorInfodoctorInfo", doctorInfo);
+    // console.log("==============doctorInfodoctorInfo", doctorInfo);
 
     return (
       <>

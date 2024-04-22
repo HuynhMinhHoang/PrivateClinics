@@ -14,6 +14,7 @@ class DoctorSchedule extends Component {
       allValuetime: [],
       isModalBooking: false,
       dataTimeParent: {},
+      dataDateParent: "",
     };
   }
 
@@ -21,7 +22,9 @@ class DoctorSchedule extends Component {
     let arrAll = this.setArrDate();
     this.setState({
       allDate: arrAll,
+      dataDateParent: arrAll[0].label,
     });
+    console.log("=======arrAll", arrAll);
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -64,20 +67,17 @@ class DoctorSchedule extends Component {
     return allDate;
   };
 
-  handleOnchangeSelect = async (e) => {
+  handleOnchangeSelect = async (selectedDate) => {
     let doctorId = this.props.doctorId;
-    let date = parseInt(e.target.value);
-
-    console.log(doctorId, date);
+    let date = parseInt(selectedDate.value);
 
     let res = await getScheduleByDateService(doctorId, date);
     if (res && res.errCode === 0) {
       this.setState({
         allValuetime: res.data ? res.data : [],
+        dataDateParent: selectedDate.label,
       });
     }
-
-    console.log("=====onchanges", res.data);
   };
 
   handleClickModalBooking = (time) => {
@@ -88,6 +88,10 @@ class DoctorSchedule extends Component {
     console.log(time);
   };
 
+  // handleClickSelectDay = (day) => {
+  //   alert("daydaydaydayday", day);
+  // };
+
   closeModalBooking = () => {
     this.setState({
       isModalBooking: false,
@@ -96,16 +100,21 @@ class DoctorSchedule extends Component {
 
   render() {
     let { allDate, allValuetime } = this.state;
-    console.log(allDate);
+    console.log("allDate", allDate);
+    // console.log("this.state.dataDateParent", this.state.dataDateParent);
     return (
       <>
         <div className="schedule-container">
           <div>
             <select
               className="select-day"
-              onChange={(e) => {
-                this.handleOnchangeSelect(e);
-              }}
+              onChange={(e) =>
+                this.handleOnchangeSelect(
+                  allDate.find(
+                    (date) => date.value === parseInt(e.target.value)
+                  )
+                )
+              }
             >
               {allDate &&
                 allDate.length > 0 &&
@@ -131,17 +140,15 @@ class DoctorSchedule extends Component {
               {allValuetime && allValuetime.length > 0 ? (
                 allValuetime.map((item, index) => {
                   return (
-                    <>
-                      <div
-                        key={index}
-                        className="btn-time"
-                        onClick={() => {
-                          this.handleClickModalBooking(item);
-                        }}
-                      >
-                        <button key={index}>{item.timeTypeDate.valueVi}</button>
-                      </div>
-                    </>
+                    <div
+                      key={index}
+                      className="btn-time"
+                      onClick={() => {
+                        this.handleClickModalBooking(item);
+                      }}
+                    >
+                      <button>{item.timeTypeDate.valueVi}</button>
+                    </div>
                   );
                 })
               ) : (
@@ -165,6 +172,9 @@ class DoctorSchedule extends Component {
           isModalBooking={this.state.isModalBooking}
           closeModalBooking={this.closeModalBooking}
           dataTimeParent={this.state.dataTimeParent}
+          dataDateParent={this.state.dataDateParent}
+          nameDoctor={this.props.nameDoctor}
+          languageParent={this.props.languageParent}
         />
       </>
     );

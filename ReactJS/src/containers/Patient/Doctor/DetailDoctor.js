@@ -5,6 +5,7 @@ import "./DetailDoctor.scss";
 import { getDetailInfoDoctorService } from "../../../services/userService";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfo from "./DoctorExtraInfo";
+import { LANGUAGES } from "../../../utils/constant";
 
 class DetailDoctor extends Component {
   constructor(props) {
@@ -36,7 +37,6 @@ class DetailDoctor extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {}
   render() {
     let detailDoctor = this.state.detailDoctor;
-    console.log(detailDoctor);
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -70,7 +70,13 @@ class DetailDoctor extends Component {
           {/* schedule */}
           <div className="bg-schedule">
             <div className="content-left">
-              <DoctorSchedule doctorId={this.state.currentDoctorId} />
+              <DoctorSchedule
+                doctorId={this.state.currentDoctorId}
+                nameDoctor={
+                  detailDoctor.firstName + " " + detailDoctor.lastName
+                }
+                languageParent={this.props.language}
+              />
             </div>
 
             <div className="content-right">
@@ -98,7 +104,7 @@ class DetailDoctor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // isLoggedIn: state.user.isLoggedIn,
+    language: state.app.language,
   };
 };
 

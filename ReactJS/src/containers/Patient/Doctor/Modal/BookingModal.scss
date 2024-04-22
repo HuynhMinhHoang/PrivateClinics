@@ -1,6 +1,13 @@
 .custom-modal {
   max-width: 800px;
   //   z-index: 999;
+
+  .time-modal {
+    margin: 10px 20px 0px 20px;
+    .time {
+      font-weight: 500;
+    }
+  }
 }
 
 .booking-container {
@@ -40,8 +47,8 @@
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 80px;
-  padding: 25px;
+  // margin-top: 80px;
+  padding: 35px;
   border: none;
 }
 
@@ -51,6 +58,19 @@
 
 .form-group-input {
   margin: 15px 0px;
+}
+
+.input-birthday {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 610px;
+    height: 50px;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 5px;
+    padding: 10px;
+  }
 }
 
 .form-group-input:first-child {
@@ -74,4 +94,20 @@
 }
 .btn-cancel:hover {
   background-color: #700000;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid lightblue;
+  border-right-color: orange;
+  animation: l2 1s infinite linear;
+  margin: 0 auto;
+}
+@keyframes l2 {
+  to {
+    transform: rotate(1turn);
+  }
 }
