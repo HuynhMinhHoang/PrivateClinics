@@ -15,12 +15,24 @@ let createSpecialty = async (req, res) => {
 };
 
 let getSpecialtyHome = async (req, res) => {
-  let limit = req.query.limit;
-  if (!limit) {
-    limit = 10;
-  }
   try {
-    let data = await specialtyService.getSpecialtyHomeService(limit);
+    let data = await specialtyService.getSpecialtyHomeService();
+    return res.status(200).json(data);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMassage: "Lỗi servers !!!",
+    });
+  }
+};
+
+let getDescriptionSpecialtyById = async (req, res) => {
+  try {
+    let data = await specialtyService.getDescriptionSpecialtyByIdService(
+      req.query.id,
+      req.query.location
+    );
     return res.status(200).json(data);
   } catch (e) {
     console.log(e);
@@ -34,4 +46,5 @@ let getSpecialtyHome = async (req, res) => {
 module.exports = {
   createSpecialty,
   getSpecialtyHome,
+  getDescriptionSpecialtyById,
 };

@@ -14,6 +14,7 @@ const initialState = {
   price: [],
   payment: [],
   province: [],
+  specialty: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -151,6 +152,18 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_DOCTOR_INFO_PROVINCE_FAILED:
       state.province = [];
+      return {
+        ...state,
+      };
+
+    //doctor_info province
+    case actionTypes.FETCH_SPECIALTY_SUCCESS:
+      state.specialty = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_SPECIALTY_FAILED:
+      state.specialty = [];
       return {
         ...state,
       };

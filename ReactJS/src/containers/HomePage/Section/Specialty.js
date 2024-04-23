@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Specialty.scss";
 import { FormattedMessage } from "react-intl";
@@ -7,6 +6,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import banner1 from "../../../assets/specialty/banner2.jpg";
 import { getSpecialtyHomeService } from "../../../services/userService";
+import { Redirect, withRouter } from "react-router-dom";
+
 class Specialty extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class Specialty extends Component {
   }
 
   async componentDidMount() {
-    let res = await getSpecialtyHomeService(10);
+    let res = await getSpecialtyHomeService();
     if (res && res.errCode === 0) {
       this.setState({
         dataSpecialty: res.data,
@@ -26,6 +27,10 @@ class Specialty extends Component {
 
   changeLanguage = (language) => {
     this.props.changeLangugeAppRedux(language);
+  };
+
+  handleViewDetailSpecialty = (idSpecialty) => {
+    this.props.history.push(`/detail-specialty/${idSpecialty}`);
   };
 
   render() {
@@ -48,7 +53,12 @@ class Specialty extends Component {
               dataSpecialty.map((item, index) => {
                 return (
                   <div className="img-customize">
-                    <div className="item-customize">
+                    <div
+                      className="item-customize"
+                      onClick={() => {
+                        this.handleViewDetailSpecialty(item.id);
+                      }}
+                    >
                       <img src={item.image} height="100%" width="100%" />
                       <h3>{item.name}</h3>
                     </div>
@@ -73,4 +83,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Specialty)
+);

@@ -33,6 +33,11 @@ class ManageDoctor extends Component {
       addressClinic: "",
       note: "",
 
+      listClinic: "",
+      selectedClinic: "",
+      listSpecialty: "",
+      selectedSpecialty: "",
+
       isBtnSave: true,
       action: true,
     };
@@ -43,6 +48,7 @@ class ManageDoctor extends Component {
     this.props.fetchDoctorInfoPrive();
     this.props.fetchDoctorInfoPayment();
     this.props.fetchDoctorInfoProvine();
+    this.props.fetchSpecialty();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -88,6 +94,17 @@ class ManageDoctor extends Component {
         listProvince: dataSelect,
       });
     }
+
+    if (prevProps.listSpecialtyRedux !== this.props.listSpecialtyRedux) {
+      let dataSelect = this.dataInputSelect(
+        this.props.listSpecialtyRedux,
+        "SPECIALTY"
+      );
+      // console.log("========", dataSelect);
+      this.setState({
+        listSpecialty: dataSelect,
+      });
+    }
   }
 
   dataInputSelect = (inputdata, type) => {
@@ -119,6 +136,15 @@ class ManageDoctor extends Component {
           let object = {};
           object.value = item.keyMap;
           object.label = `${item.valueVi}`;
+          result.push(object);
+        });
+      }
+
+      if (type === "SPECIALTY") {
+        inputdata.map((item, index) => {
+          let object = {};
+          object.value = item.id;
+          object.label = item.name;
           result.push(object);
         });
       }
@@ -156,6 +182,13 @@ class ManageDoctor extends Component {
         nameClinic: this.state.nameClinic,
         addressClinic: this.state.addressClinic,
         note: this.state.note,
+
+        //save specialty
+        selectedSpecialty: this.state.selectedSpecialty.value,
+        selectedClinic:
+          this.state.selectedClinic && this.state.selectedClinic.value
+            ? this.state.selectedClinic.value
+            : "",
       })
       .then(() => {
         this.setState({
@@ -169,6 +202,9 @@ class ManageDoctor extends Component {
           selectPayment: "",
           selectProvince: "",
           selectPrice: "",
+
+          selectedSpecialty: "",
+          selectedClinic: "",
         });
       });
     // console.log("===", this.props.saveInfoDoctor);
@@ -186,6 +222,7 @@ class ManageDoctor extends Component {
       "nameClinic",
       "addressClinic",
       "note",
+      "selectedSpecialty",
     ];
     for (let i = 0; i < arrCheck.length; i++) {
       if (!this.state[arrCheck[i]]) {
@@ -209,7 +246,9 @@ class ManageDoctor extends Component {
         note = "",
         paymentId = "",
         provinceId = "",
-        priceId = "";
+        priceId = "",
+        selectedSpecialty = "",
+        specialtyId = "";
 
       if (res && res.data && res.data.Doctor_Info) {
         nameClinic = res.data.Doctor_Info.nameClinic;
@@ -230,6 +269,12 @@ class ManageDoctor extends Component {
             currency: "VND",
           }).format(res.data.Doctor_Info.priceTypeData.valueVi),
         };
+
+        specialtyId = res.data.Doctor_Info.specialtyId;
+
+        selectedSpecialty = this.state.listSpecialty.find((item) => {
+          return item && item.value === specialtyId;
+        });
         // priceId = "";
       }
       console.log("=======paymentId", paymentId);
@@ -248,6 +293,8 @@ class ManageDoctor extends Component {
         selectPayment: paymentId,
         selectProvince: provinceId,
         selectPrice: priceId,
+
+        selectedSpecialty: selectedSpecialty,
       });
     } else {
       this.setState({
@@ -263,6 +310,8 @@ class ManageDoctor extends Component {
         selectPrice: "",
         isBtnSave: true,
         action: false,
+
+        selectedSpecialty: "",
       });
     }
   };
@@ -288,10 +337,10 @@ class ManageDoctor extends Component {
   };
 
   render() {
-    let { isBtnSave } = this.state;
+    let { isBtnSave, listSpecialty } = this.state;
     let { listDoctorInfoPrice, listDoctorInfoPayment, listDoctorInfoProvince } =
       this.props;
-    console.log("state============", this.state);
+    // console.log("state============", this.state);
     return (
       <>
         <div className="title">
@@ -317,6 +366,32 @@ class ManageDoctor extends Component {
                 this.hanldeOnChangeText(e, "description");
               }}
             ></textarea>
+          </div>
+        </div>
+
+        <div className="content-containers">
+          <div className="content-right">
+            <label>Chọn phòng khám:</label>
+            <Select
+              value={this.state.selectedSpecialty}
+              onChange={this.handleChangeSelectOptions}
+              options={listSpecialty}
+              placeholder={"Chọn tên phòng khám"}
+              className="select"
+              name="selectedSpecialty"
+            />
+          </div>
+
+          <div className="content-right">
+            <label>Chọn Chuyên khoa:</label>
+            <Select
+              value={this.state.selectedClinic}
+              // onChange={this.handleChangeSelect}
+              options={listSpecialty}
+              placeholder={"Chọn tên chuyên khoa"}
+              className="select"
+              name="selectedClinic"
+            />
           </div>
         </div>
 
@@ -432,6 +507,7 @@ const mapStateToProps = (state) => {
     listDoctorInfoPrice: state.admin.price,
     listDoctorInfoPayment: state.admin.payment,
     listDoctorInfoProvince: state.admin.province,
+    listSpecialtyRedux: state.admin.specialty,
   };
 };
 
@@ -443,6 +519,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchDoctorInfoPrive: () => dispatch(actions.fetchDoctorInfoPrive()),
     fetchDoctorInfoPayment: () => dispatch(actions.fetchDoctorInfoPayment()),
     fetchDoctorInfoProvine: () => dispatch(actions.fetchDoctorInfoProvine()),
+    fetchSpecialty: () => dispatch(actions.fetchSpecialty()),
   };
 };
 

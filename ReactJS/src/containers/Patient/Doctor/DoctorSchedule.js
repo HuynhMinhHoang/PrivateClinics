@@ -24,7 +24,7 @@ class DoctorSchedule extends Component {
       allDate: arrAll,
       dataDateParent: arrAll[0].label,
     });
-    console.log("=======arrAll", arrAll);
+    // console.log("=======arrAll", arrAll);
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -100,7 +100,7 @@ class DoctorSchedule extends Component {
 
   render() {
     let { allDate, allValuetime } = this.state;
-    console.log("allDate", allDate);
+    // console.log("allDate", allDate);
     // console.log("this.state.dataDateParent", this.state.dataDateParent);
     return (
       <>

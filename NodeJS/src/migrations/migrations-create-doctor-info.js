@@ -22,6 +22,14 @@ module.exports = {
         allowNull: false,
       },
 
+      specialtyId: {
+        type: Sequelize.INTEGER,
+      },
+      
+      clinicId: {
+        type: Sequelize.INTEGER,
+      },
+
       paymentId: {
         type: Sequelize.STRING,
         allowNull: false,

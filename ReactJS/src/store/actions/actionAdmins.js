@@ -8,6 +8,7 @@ import {
   getTopDoctorHomeService,
   getAllDoctorService,
   saveInfoDoctorService,
+  getSpecialtyHomeService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -376,6 +377,30 @@ export const fetchDoctorInfoProvine = () => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_DOCTOR_INFO_PROVINCE_FAILED,
+      });
+    }
+  };
+};
+
+//fetch specialty
+export const fetchSpecialty = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getSpecialtyHomeService();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_SPECIALTY_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        console.log("error", res);
+        dispatch({
+          type: actionTypes.FETCH_SPECIALTY_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_SPECIALTY_FAILED,
       });
     }
   };

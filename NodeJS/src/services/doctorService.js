@@ -10,7 +10,7 @@ let getTopDoctorHome = (limit) => {
         where: {
           roleId: "R2",
         },
-        order: [["createdAt", "DESC"]],
+        order: [["createdAt"]],
         attributes: {
           exclude: ["password"],
         },
@@ -69,13 +69,14 @@ let saveInfoDoctorService = (input) => {
         !input.doctorId ||
         !input.contentHTML ||
         !input.contentMarkDown ||
-        !input.action
-        // !input.selectPrice ||
-        // !input.selectPayment ||
-        // !input.selectProvince ||
-        // !input.nameClinic ||
-        // !input.addressClinic ||
-        // !input.note
+        !input.action ||
+        !input.selectPrice ||
+        !input.selectPayment ||
+        !input.selectProvince ||
+        !input.nameClinic ||
+        !input.addressClinic ||
+        !input.note ||
+        !input.selectedSpecialty
       ) {
         console.log("erorr ==== input");
         resolve({
@@ -127,6 +128,8 @@ let saveInfoDoctorService = (input) => {
           doctorInfo.nameClinic = input.nameClinic;
           doctorInfo.addressClinic = input.addressClinic;
           doctorInfo.note = input.note;
+          doctorInfo.specialtyId = input.selectedSpecialty;
+          doctorInfo.clinicId = input.selectedClinic;
 
           await doctorInfo.save();
           // console.log("=======");
@@ -144,6 +147,8 @@ let saveInfoDoctorService = (input) => {
             nameClinic: input.nameClinic,
             addressClinic: input.addressClinic,
             note: input.note,
+            specialtyId: input.selectedSpecialty,
+            clinicId: input.selectedClinic,
           });
           resolve({
             errCode: 0,
