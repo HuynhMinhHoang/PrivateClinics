@@ -71,6 +71,13 @@ const verifyBookingPatientService = (data) => {
   return axios.post("/api/verify-booking", data);
 };
 
+const createSpecialtyService = (data) => {
+  return axios.post("/api/create-new-specialty", data);
+};
+
+const getSpecialtyHomeService = (limit) => {
+  return axios.get(`/api/top-specialty-home?limit=${limit}`);
+};
 export {
   handleLoginAPI,
   getAllUser,
@@ -88,4 +95,6 @@ export {
   getProfileDoctorService,
   addBookingPatientService,
   verifyBookingPatientService,
+  createSpecialtyService,
+  getSpecialtyHomeService,
 };

@@ -9,6 +9,7 @@ class VerifyEmail extends Component {
     super(props);
     this.state = {
       statusVerify: false,
+      loading: true,
     };
   }
 
@@ -23,6 +24,12 @@ class VerifyEmail extends Component {
         doctorId: doctorId,
       });
 
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      }, 1000);
+
       if (res && res.errCode === 0) {
         this.setState({
           statusVerify: true,
@@ -36,15 +43,25 @@ class VerifyEmail extends Component {
     return (
       <>
         <HomeHeader />
-        <div
-          className={
-            this.state.statusVerify ? "success-message" : "error-message"
-          }
-        >
-          {this.state.statusVerify
-            ? "Xác nhận lịch hẹn thành công!"
-            : "Lịch hẹn đã được xác nhận, Vui lòng thử lại!!"}
-        </div>
+        {this.state.loading ? (
+          <div className="loader"></div>
+        ) : (
+          <div className="loader display"></div>
+        )}
+
+        {!this.state.loading && (
+          <div
+            className={
+              this.state.statusVerify ? "success-message" : "error-message"
+            }
+          >
+            {this.state.statusVerify ? (
+              <p>Xác nhận lịch hẹn thành công!</p>
+            ) : (
+              <p>Lịch hẹn đã được xác nhận, Vui lòng thử lại!!</p>
+            )}
+          </div>
+        )}
       </>
     );
   }

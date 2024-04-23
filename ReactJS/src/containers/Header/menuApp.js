@@ -27,7 +27,7 @@ export const adminMenu = [
     ],
   },
 
-  {
+  { 
     //quản lý phòng khám
     name: "menu.admin.clinic",
     menus: [
