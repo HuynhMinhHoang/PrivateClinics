@@ -1,35 +1,81 @@
-.bg-descriptionHTML{
-  margin: 30px 200px;
-  padding: 30px 0px 20px 0px;
-}
+.bg-container-detail-specialty {
+  background-color: rgb(248, 248, 248);
+  padding: 10px 0 30px 0;
+  .tilte-specialty {
+    margin: 0px 200px 20px 200px;
+    padding: 10px 0px 0px 0px;
 
-.detail-specialty-container {
-  border: none;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 30px 200px;
-  padding: 30px 0px 20px 0px;
-  box-shadow: 0px 0px 30px rgba(184, 252, 254, 0.665);
-  background-color: white;
-  .bg-content-left {
-    // border: 1px solid black;
-    width: 40%;
+    div {
+      display: flex;
+      align-items: center;
+      // justify-content: ;
 
-  
+      p {
+        margin: 0;
+        color: #45c3d2;
+
+        i {
+          padding-right: 10px;
+          color: #45c3d2;
+        }
+      }
+    }
+
+    .text-tilte-specialty {
+      font-size: 30px;
+      font-weight: 500;
+      margin-top: 20px;
+      text-transform: uppercase;
+    }
   }
-  .bg-content-right {
-    // border: 1px solid rgb(0, 254, 131);
-    width: 50%;
+  .bg-descriptionHTML {
+    margin: 20px 200px;
+    padding: 20px 0px 20px 0px;
 
-    .br {
-      width: 100%;
-      text-align: center;
-      margin: 0 auto;
-      height: 1px;
-      margin-bottom: 20px;
-      background-color: #ececec;
+    .textName-detail-content {
+      font-size: 18px;
+      line-height: 0.8;
+    }
+  }
+
+  .search-province {
+    margin: 20px 200px;
+    padding: 00px 0px 20px 0px;
+    width: 200px;
+
+    input {
+      border-radius: 5px;
+      border-color: rgb(211, 211, 211);
+      padding: 2px 5px;
+    }
+  }
+
+  .detail-specialty-container {
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 30px 200px 0px 200px;
+    padding: 30px 0px 20px 0px;
+    box-shadow: 0px 0px 20px rgb(220, 250, 253);
+    background-color: white;
+    .bg-content-left {
+      // border: 1px solid black;
+      width: 40%;
+    }
+    .bg-content-right {
+      // border: 1px solid rgb(0, 254, 131);
+      width: 50%;
+
+      .br {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        height: 1px;
+        margin-bottom: 20px;
+        background-color: #ececec;
+      }
     }
   }
 }

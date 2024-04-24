@@ -310,7 +310,7 @@ export const fetchCheduleHours = () => {
   };
 };
 
-//fetch doctor_info prive
+//fetch doctor_info price
 export const fetchDoctorInfoPrive = () => {
   return async (dispatch, getState) => {
     try {

@@ -65,7 +65,7 @@ const getDescriptionSpecialtyByIdService = (id, location) => {
           where: {
             id: id,
           },
-          attributes: ["descriptionHTML", "descriptionMarkDown"],
+          attributes: ["descriptionHTML", "descriptionMarkDown", "name"],
           raw: true,
         });
 

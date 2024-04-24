@@ -18,8 +18,20 @@ class DoctorSchedule extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let arrAll = this.setArrDate();
+
+    if (this.props.doctorId) {
+      let allDate = this.setArrDate();
+      let res = await getScheduleByDateService(
+        this.props.doctorId,
+        allDate[0].value
+      );
+      this.setState({
+        allValuetime: res.data ? res.data : [],
+      });
+    }
+
     this.setState({
       allDate: arrAll,
       dataDateParent: arrAll[0].label,
