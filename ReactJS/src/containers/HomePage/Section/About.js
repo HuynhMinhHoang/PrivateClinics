@@ -16,7 +16,7 @@ class About extends Component {
   render() {
     return (
       <div className="section-about">
-        <h3>Truyền thông nói gì về BookKingCare</h3>
+        <h3>Truyền thông nói gì về BookingCare</h3>
 
         <div className="section-about-content">
           <div className="section-about-content-left">

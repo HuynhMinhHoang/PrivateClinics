@@ -51,7 +51,8 @@
       "manager-handbook": "Manager Handbook"
     },
     "doctor": {
-      "manager-schedule": "Manage Medical Examination Plans"
+      "manager-schedule": "Manage Medical Examination Plans",
+      "manager-booking" : "Manage Medical Appointments"
     }
   },
 

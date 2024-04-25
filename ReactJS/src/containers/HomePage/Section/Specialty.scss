@@ -50,16 +50,29 @@
       padding: 20px;
       border-radius: 20px;
       background-color: white;
-      border: 1px solid rgb(130, 238, 248);
+      border: 1px solid rgb(230, 230, 230);
+      transition: 0.3s;
       img {
         margin-bottom: 15px !important;
         border-radius: 10px;
-        border: 1px solid rgb(227, 227, 227);
+        // border: 1px solid rgb(227, 227, 227);
+        transition: transform 0.5s ease;
+      }
+      img:hover {
+        transform: scale(0.9);
       }
       h3 {
         margin: 0px;
         font-size: 20px;
       }
+      h3:hover {
+        // color: #27b0c3;
+      }
+    }
+
+    .item-customize:hover {
+      border: 1px solid rgb(130, 238, 248);
+      color: #27b0c3;
     }
   }
 }

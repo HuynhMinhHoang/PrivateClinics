@@ -15,6 +15,7 @@ const initialState = {
   payment: [],
   province: [],
   specialty: [],
+  clinic: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -164,6 +165,19 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_SPECIALTY_FAILED:
       state.specialty = [];
+      return {
+        ...state,
+      };
+
+    //doctor_info clinic
+    case actionTypes.FETCH_CLINIC_SUCCESS:
+      state.clinic = action.data;
+      // console.log("////",state.clinic);
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_CLINIC_FAILED:
+      state.clinic = [];
       return {
         ...state,
       };

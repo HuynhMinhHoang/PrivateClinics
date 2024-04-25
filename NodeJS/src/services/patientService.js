@@ -22,6 +22,7 @@ const addBookingPatient = (data) => {
           errMessage: "Lỗi thiếu thông tin!!",
         });
       } else {
+        console.log("+====================", data);
         let idToken = uuidv4();
         let linkVerifyEmail = `${process.env.URL_REACT}/verify-booking?token=${idToken}&doctorId=${data.doctorId}`;
 
@@ -30,6 +31,11 @@ const addBookingPatient = (data) => {
           defaults: {
             email: data.email,
             roleId: "R3",
+            gender: data.gender,
+            phonenumber: data.phoneNumber,
+            address: data.address,
+            firstName: data.firstName,
+            lastName: data.lastName,
           },
         });
 
@@ -67,10 +73,10 @@ const addBookingPatient = (data) => {
 
 let getBodyHTMLEmail = (data, linkVerifyEmail) => {
   let result = "";
-  if (data.languageParent === "vi") {
+  if (data.language === "vi") {
     result = `
     <div>
-      <p>Xin chào ${data.fullName},</p>
+      <p>Xin chào ${data.firstName} ${data.lastName},</p>
       <p>Lịch hẹn của bạn đã được xác nhận thành công. Chúng tôi rất mong chờ gặp bạn!</p>
 
       <p>Vui lòng click vào <a href="${linkVerifyEmail}" target="_blank">xác nhận</a> để hoàn tất.</p>
@@ -92,10 +98,10 @@ let getBodyHTMLEmail = (data, linkVerifyEmail) => {
       <p>Trân trọng,<br>
       [PrivateClinics]</p>
     </div>`;
-  } else if (data.languageParent === "en") {
+  } else if (data.language === "en") {
     result = `
      <div>
-      <p>Hello ${data.fullName},</p>
+      <p>Hello ${data.firstName} ${data.lastName},</p>
       <p>Your appointment has been confirmed successfully. We look forward to seeing you!</p>
 
       <p>Vui lòng click vào <a href="${linkVerifyEmail}" target="_blank">xác nhận</a> để hoàn tất.</p>
@@ -122,9 +128,9 @@ let getBodyHTMLEmail = (data, linkVerifyEmail) => {
 
 let getSubject = (data) => {
   let result = "";
-  if (data.languageParent === "vi") {
+  if (data.language === "vi") {
     result = `PrivateClinics - Xác nhận lịch hẹn (Vietnamese)`;
-  } else if (data.languageParent === "en") {
+  } else if (data.language === "en") {
     result = `PrivateClinics - Confirm Appointment (English)`;
   }
   return result;

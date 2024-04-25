@@ -245,8 +245,9 @@ let createScheduleService = (data) => {
           errMassage: "Vui lòng điền thông tin!",
         });
       } else {
+        console.log("=dfgdfg",data.date);
         let schedule = data.arrSchedule;
-        // console.log(schedule);
+ 
         schedule = schedule.map((item) => {
           item.maxNumber = 10;
           item.date = new Date(item.date).getTime();
@@ -451,6 +452,61 @@ const getProfileDoctorService = (idDoctor) => {
   });
 };
 
+let getListBookingService = (idDoctor, date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!idDoctor || !date) {
+        resolve({
+          errCode: 1,
+          errMassage: "Thiếu dữ liệu !!",
+        });
+      } else {
+        console.log("=====no convern", date);
+        let convertDate = new Date(date).getTime();
+        console.log("convertDate", convertDate);
+
+        let data = await db.Booking.findAll({
+          where: { doctorId: idDoctor, date: convertDate, statusId: "S2" },
+          include: [
+            {
+              model: db.User,
+              as: "patientData",
+              attributes: {
+                exclude: [
+                  "password",
+                  "createdAt",
+                  "updatedAt",
+                  "positionId",
+                  "roleId",
+                ],
+              },
+              include: [
+                {
+                  model: db.Allcode,
+                  as: "genderData",
+                  attributes: ["valueVi", "valueEn"],
+                },
+              ],
+            },
+            {
+              model: db.Allcode,
+              as: "timeTypeBookingData",
+              attributes: ["valueVi", "valueEn"],
+            },
+          ],
+          nest: true,
+        });
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctorService: getAllDoctorService,
@@ -460,4 +516,5 @@ module.exports = {
   getScheduleByDateService: getScheduleByDateService,
   getDoctorExtraInfoService: getDoctorExtraInfoService,
   getProfileDoctorService: getProfileDoctorService,
+  getListBookingService: getListBookingService,
 };

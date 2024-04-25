@@ -9,21 +9,16 @@ import {
   userIsAuthenticated,
   userIsNotAuthenticated,
 } from "../hoc/authentication";
-
 import { path } from "../utils";
-
 import Home from "../routes/Home";
 import HomePage from "./HomePage/HomePage";
-
 import Login from "../containers/Auth/Login";
-
 import System from "../routes/System";
 import Doctor from "../routes/Doctor";
 import DetailDoctor from "../containers/Patient/Doctor/DetailDoctor";
-
 import DetailSpecialty from "./Patient/Specialty/DetailSpecialty";
-
 import VerifyEmail from "./Patient/VerifyEmail";
+import DetailClinic from "./Patient/Clinic/DetailClinic";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -68,6 +63,7 @@ class App extends Component {
 
                 <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                 <Route path={path.DETAIL_SPECIAL} component={DetailSpecialty} />
+                <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
 
                 <Route
                   path={path.VERIFY_EMAIL_BOOKING}

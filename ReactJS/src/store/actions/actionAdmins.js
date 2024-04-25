@@ -9,6 +9,7 @@ import {
   getAllDoctorService,
   saveInfoDoctorService,
   getSpecialtyHomeService,
+  getClinicHomeService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -401,6 +402,31 @@ export const fetchSpecialty = () => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_SPECIALTY_FAILED,
+      });
+    }
+  };
+};
+
+//fetch clinic
+export const fetchClinic = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getClinicHomeService();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_CLINIC_SUCCESS,
+          data: res.data,
+        });
+        // console.log("fetchClinic", res.data);
+      } else {
+        console.log("error", res);
+        dispatch({
+          type: actionTypes.FETCH_CLINIC_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_CLINIC_FAILED,
       });
     }
   };

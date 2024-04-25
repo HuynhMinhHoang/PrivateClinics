@@ -110,6 +110,21 @@ let getProfileDoctor = async (req, res) => {
   }
 };
 
+let getListBooking = async (req, res) => {
+  try {
+    let idDoctor = req.query.idDoctor;
+    let date = req.query.date;
+    let data = await doctorService.getListBookingService(idDoctor, date);
+    return res.status(200).json(data);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMassage: "Lỗi servers !!!",
+    });
+  }
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctor: getAllDoctor,
@@ -119,4 +134,5 @@ module.exports = {
   getScheduleByDate: getScheduleByDate,
   getDoctorExtraInfo: getDoctorExtraInfo,
   getProfileDoctor: getProfileDoctor,
+  getListBooking: getListBooking,
 };

@@ -52,7 +52,8 @@
     }
     ,
     "doctor":{
-      "manager-schedule" : "Quản lý kế hoạch khám bệnh"
+      "manager-schedule" : "Quản lý kế hoạch khám bệnh",
+      "manager-booking" : "Quản lý lịch hẹn khám bệnh"
     }
   },
 

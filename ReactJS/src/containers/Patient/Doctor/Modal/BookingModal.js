@@ -22,14 +22,15 @@ class BookingModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullName: "",
+      firstName: "",
+      lastName: "",
       gender: "",
       genderArr: [],
       phoneNumber: "",
       email: "",
       address: "",
       reason: "",
-      birthDay: "",
+      date: "",
       doctorId: "",
       timeType: "",
       isConfirming: false,
@@ -70,39 +71,36 @@ class BookingModal extends Component {
     });
   };
 
-  handleOnchangeDatePicker = (date) => {
-    this.setState({
-      birthDay: date[0],
-    });
-  };
-
   handleConfirmBooking = async () => {
     this.setState({ isConfirming: true });
-    let date = new Date(this.state.birthDay).getTime();
+    let date = new Date(this.state.date).getTime();
     let res = await addBookingPatientService({
-      fullName: this.state.fullName,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       gender: this.state.gender,
       phoneNumber: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
       reason: this.state.reason,
-      date: date,
+      date: this.props.dataTimeParent.date,
       doctorId: this.state.doctorId,
       timeType: this.state.timeType,
 
       days: this.props.dataDateParent,
       time: this.props.dataTimeParent.timeTypeDate.valueVi,
       nameDoctor: this.props.nameDoctor,
-      languageParent: this.props.languageParent,
+      language: this.props.language,
       // linkRedireact: "https://www.youtube.com/",
     });
     this.setState({ isConfirming: false });
     if (res && res.errCode === 0) {
       toast.success("Đăng ký khám thành công!");
-      console.log("Booking confirmed with data:", this.state);
+      console.log("!!!!!!!!!", this.state);
+
       this.props.closeModalBooking();
       this.setState({
-        fullName: "",
+        firstName: "",
+        lastName: "",
         gender: "",
         phoneNumber: "",
         email: "",
@@ -120,9 +118,9 @@ class BookingModal extends Component {
     let { closeModalBooking, isModalBooking, dataTimeParent, dataDateParent } =
       this.props;
 
-    // console.log("!!!!!!!!!", this.props.nameDoctor);
     const genderInfo = this.state.genderArr;
 
+    console.log("datedatedatedate", dataTimeParent);
     return (
       <Modal
         toggle={closeModalBooking}
@@ -148,44 +146,56 @@ class BookingModal extends Component {
           <div className="row">
             <div className="col-md-6">
               <FormGroup className="form-group-input">
-                <Label for="fullName">Họ và tên</Label>
+                <Label for="firstName">Họ</Label>
                 <Input
                   type="text"
-                  name="fullName"
-                  id="fullName"
-                  value={this.state.fullName}
+                  name="firstName"
+                  id="firstName"
+                  value={this.state.firstName}
                   onChange={(e) => {
-                    this.handleInputChange(e, "fullName");
+                    this.handleInputChange(e, "firstName");
                   }}
                 />
               </FormGroup>
             </div>
             <div className="col-md-6">
               <FormGroup className="form-group-input">
-                <Label for="gender">Giới tính</Label>
-
+                <Label for="lastName">Tên</Label>
                 <Input
-                  type="select"
-                  name="gender"
-                  id="gender"
-                  value={this.state.gender}
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  value={this.state.lastName}
                   onChange={(e) => {
-                    this.handleInputChange(e, "gender");
+                    this.handleInputChange(e, "lastName");
                   }}
-                >
-                  {genderInfo &&
-                    genderInfo.length > 0 &&
-                    genderInfo.map((item, index) => {
-                      return (
-                        <option key={index} value={item.keyMap}>
-                          {item.valueVi}
-                        </option>
-                      );
-                    })}
-                </Input>
+                />
               </FormGroup>
             </div>
           </div>
+          <FormGroup className="form-group-input">
+            <Label for="gender">Giới tính</Label>
+
+            <Input
+              type="select"
+              name="gender"
+              id="gender"
+              value={this.state.gender}
+              onChange={(e) => {
+                this.handleInputChange(e, "gender");
+              }}
+            >
+              {genderInfo &&
+                genderInfo.length > 0 &&
+                genderInfo.map((item, index) => {
+                  return (
+                    <option key={index} value={item.keyMap}>
+                      {item.valueVi}
+                    </option>
+                  );
+                })}
+            </Input>
+          </FormGroup>
           <FormGroup className="form-group-input">
             <Label for="phoneNumber">Số điện thoại</Label>
             <Input
@@ -234,13 +244,13 @@ class BookingModal extends Component {
               }}
             />
           </FormGroup>
-          <FormGroup className="form-group-input input-birthday">
+          {/* <FormGroup className="form-group-input input-birthday">
             <Label for="birthDay">Ngày sinh</Label>
             <DatePicker
               onChange={this.handleOnchangeDatePicker}
               value={this.state.birthDay}
             />
-          </FormGroup>
+          </FormGroup> */}
         </ModalBody>
 
         <ModalFooter>
@@ -268,7 +278,7 @@ class BookingModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genderRedux: state.admin.genders };
+  return { genderRedux: state.admin.genders, language: state.app.language };
 };
 
 const mapDispatchToProps = (dispatch) => {

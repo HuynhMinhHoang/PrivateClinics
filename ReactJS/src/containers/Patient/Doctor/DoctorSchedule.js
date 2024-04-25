@@ -82,6 +82,7 @@ class DoctorSchedule extends Component {
   handleOnchangeSelect = async (selectedDate) => {
     let doctorId = this.props.doctorId;
     let date = parseInt(selectedDate.value);
+    // console.log("datedatedatedate",date)
 
     let res = await getScheduleByDateService(doctorId, date);
     if (res && res.errCode === 0) {
@@ -112,7 +113,7 @@ class DoctorSchedule extends Component {
 
   render() {
     let { allDate, allValuetime } = this.state;
-    // console.log("allDate", allDate);
+    console.log("allDate", this.state.allValuetime);
     // console.log("this.state.dataDateParent", this.state.dataDateParent);
     return (
       <>

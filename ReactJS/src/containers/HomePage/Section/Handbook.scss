@@ -1,7 +1,7 @@
 .section-handbook {
   // margin-bottom: 100px;
 
-  background-color: #f7f7f7;
+  background-color: #fbfbfb;
 
   padding-bottom: 40px;
   position: relative;
@@ -12,12 +12,7 @@
     height: 100px;
     width: 100%;
     // border: 1px solid red;
-    background-image: linear-gradient(
-      to top,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.5),
-      rgb(255, 255, 255)
-    );
+    background-image: white
   }
 
   .color-gradient-down {
@@ -26,12 +21,7 @@
     height: 100px;
     width: 100%;
     // border: 1px solid red;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.5),
-      rgb(255, 255, 255)
-    );
+    background-image: white;
   }
 
   .section-content {
@@ -81,6 +71,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: 0.5s;
+
       img {
         // margin-bottom: 15px !important;
         border-radius: 10px;
@@ -91,8 +83,11 @@
       h3 {
         margin: 0px;
         font-size: 18px;
-        color: rgb(61, 61, 61);
       }
+    }
+    .item-customize:hover {
+      border: 1px solid rgb(130, 238, 248);
+      color: #27b0c3;
     }
   }
 }

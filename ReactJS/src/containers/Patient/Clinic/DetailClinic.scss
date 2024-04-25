@@ -1,0 +1,134 @@
+.bg-container-detail-clinic {
+  background-color: rgb(248, 248, 248);
+  padding: 10px 0 30px 0;
+
+  .bg-banner-clinic {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 1px 6px rgba(32, 33, 36, 0.28);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    margin: 30px auto;
+    justify-content: start;
+    width: 80%;
+    height: 250px;
+
+    .img-clinic {
+      width: 250px;
+      height: 100px;
+      // border: 1px solid rgb(227, 227, 227);
+
+      img {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    .name-clinic {
+      p {
+        padding: 0;
+        margin: 0;
+        margin-left: 50px;
+      }
+      p:first-child {
+        font-size: 33px;
+        font-weight: 500;
+      }
+      p:last-child {
+        color: gray;
+      }
+    }
+  }
+
+  .list-doctor {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0px 200px 20px 200px;
+    div {
+      height: 1px;
+      background-color:rgba(235,235,235,1.00);
+      width: 100%;
+    }
+  }
+
+  .tilte-specialty {
+    margin: 0px 200px 20px 200px;
+    padding: 10px 0px 0px 0px;
+
+    div {
+      display: flex;
+      align-items: center;
+      // justify-content: ;
+
+      p {
+        margin: 0;
+        color: #45c3d2;
+
+        i {
+          padding-right: 10px;
+          color: #45c3d2;
+        }
+      }
+    }
+
+    .text-tilte-specialty {
+      font-size: 30px;
+      font-weight: 500;
+      margin-top: 20px;
+      text-transform: uppercase;
+    }
+  }
+  .bg-descriptionHTML {
+    margin: 20px 200px;
+    padding: 20px 0px 20px 0px;
+
+    .textName-detail-content {
+      font-size: 18px;
+      line-height: 0.8;
+    }
+  }
+
+  .search-province {
+    margin: 20px 200px;
+    padding: 00px 0px 20px 0px;
+    width: 200px;
+
+    input {
+      border-radius: 5px;
+      border-color: rgb(211, 211, 211);
+      padding: 2px 5px;
+    }
+  }
+
+  .detail-specialty-container {
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 30px 200px 0px 200px;
+    padding: 30px 0px 20px 0px;
+    box-shadow: 0px 0px 20px rgb(220, 250, 253);
+    background-color: white;
+    .bg-content-left {
+      // border: 1px solid black;
+      width: 40%;
+    }
+    .bg-content-right {
+      // border: 1px solid rgb(0, 254, 131);
+      width: 50%;
+
+      .br {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        height: 1px;
+        margin-bottom: 20px;
+        background-color: #ececec;
+      }
+    }
+  }
+}

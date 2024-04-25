@@ -85,6 +85,23 @@ const getDescriptionSpecialtyByIdService = (id, location) => {
   );
 };
 
+const createClinicService = (data) => {
+  return axios.post("/api/create-new-clinic", data);
+};
+
+const getClinicHomeService = () => {
+  return axios.get("/api/top-clinic-home");
+};
+
+const getDescriptionClinicByIdService = (id, location) => {
+  return axios.get(
+    `/api/get-description-clinic-byId?id=${id}&location=${location}`
+  );
+};
+
+const getListBookingService = (idDoctor, date) => {
+  return axios.get(`/api/get-list-booking?idDoctor=${idDoctor}&date=${date}`);
+};
 export {
   handleLoginAPI,
   getAllUser,
@@ -105,4 +122,8 @@ export {
   createSpecialtyService,
   getSpecialtyHomeService,
   getDescriptionSpecialtyByIdService,
+  createClinicService,
+  getClinicHomeService,
+  getDescriptionClinicByIdService,
+  getListBookingService,
 };
