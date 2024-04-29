@@ -1,5 +1,6 @@
 import _ from "lodash";
 import db from "../models/index";
+import emailService from "./emailService";
 
 let getTopDoctorHome = (limit) => {
   return new Promise(async (resolve, reject) => {
@@ -245,9 +246,9 @@ let createScheduleService = (data) => {
           errMassage: "Vui lòng điền thông tin!",
         });
       } else {
-        console.log("=dfgdfg",data.date);
+        console.log("=dfgdfg", data.date);
         let schedule = data.arrSchedule;
- 
+
         schedule = schedule.map((item) => {
           item.maxNumber = 10;
           item.date = new Date(item.date).getTime();
@@ -452,7 +453,7 @@ const getProfileDoctorService = (idDoctor) => {
   });
 };
 
-let getListBookingService = (idDoctor, date) => {
+const getListBookingService = (idDoctor, date) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!idDoctor || !date) {
@@ -461,9 +462,9 @@ let getListBookingService = (idDoctor, date) => {
           errMassage: "Thiếu dữ liệu !!",
         });
       } else {
-        console.log("=====no convern", date);
+        // console.log("=====no convern", date);
         let convertDate = new Date(date).getTime();
-        console.log("convertDate", convertDate);
+        // console.log("convertDate", convertDate);
 
         let data = await db.Booking.findAll({
           where: { doctorId: idDoctor, date: convertDate, statusId: "S2" },
@@ -493,6 +494,11 @@ let getListBookingService = (idDoctor, date) => {
               as: "timeTypeBookingData",
               attributes: ["valueVi", "valueEn"],
             },
+            {
+              model: db.Allcode,
+              as: "statusIdData",
+              attributes: ["valueVi", "valueEn"],
+            },
           ],
           nest: true,
         });
@@ -507,6 +513,84 @@ let getListBookingService = (idDoctor, date) => {
   });
 };
 
+const sendRemedyBookingService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!data.doctorId || !data.patientId || !data.email || !data.timeType) {
+        resolve({
+          errCode: 1,
+          errMassage: "Thiếu dữ liệu !!",
+        });
+      } else {
+        //update patient status
+        let dataBooking = await db.Booking.findOne({
+          where: {
+            doctorId: data.doctorId,
+            patientId: data.patientId,
+            timeType: data.timeType,
+            statusId: "S2",
+          },
+          raw: false,
+        });
+        if (dataBooking) {
+          console.log("dataBooking", dataBooking);
+          dataBooking.statusId = "S3";
+          await dataBooking.save();
+        }
+
+        //send email remedy bookings
+        await emailService.sendEmailRemedyService({
+          email: data.email,
+          img: data.imgBase64,
+          subject: getSubject(data),
+          html: getBodyHTMLSendRemedyBooking(data),
+          namePatient: data.namePatient,
+        });
+
+        resolve({
+          errCode: 0,
+          errMassage: "OK",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let getBodyHTMLSendRemedyBooking = (data) => {
+  let result = "";
+  if (data.language === "vi") {
+    result = `
+    <div>
+      <p>Xin chào ${data.namePatient},</p>
+      <p>Bạn đã hoàn thành cuộc khám tại PrivateClinics. Dưới đây là kết quả của cuộc khám:</p>
+      <p>Xin hãy liên hệ với chúng tôi nếu bạn cần thêm thông tin hoặc hỗ trợ.</p>
+      <p>Trân trọng,</p>
+      <p>[PrivateClinics]</p>
+    </div>`;
+  } else if (data.language === "en") {
+    result = `
+    <div>
+      <p>Hello ${data.namePatient},</p>
+      <p>You have completed your examination at PrivateClinics. Here are the results of your examination:</p>
+      <p>Please contact us if you need further information or assistance.</p>
+      <p>Best regards,</p>
+      <p>[PrivateClinics]</p>
+    </div>
+    `;
+  }
+  return result;
+};
+
+let getSubject = (data) => {
+  let result = "";
+  if (data.language === "vi") {
+    result = `PrivateClinics - Kết quả khám bệnh (Vietnamese)`;
+  } else if (data.language === "en") {
+    result = `PrivateClinics - Examination Results (English)`;
+  }
+  return result;
+};
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctorService: getAllDoctorService,
@@ -517,4 +601,5 @@ module.exports = {
   getDoctorExtraInfoService: getDoctorExtraInfoService,
   getProfileDoctorService: getProfileDoctorService,
   getListBookingService: getListBookingService,
+  sendRemedyBookingService: sendRemedyBookingService,
 };

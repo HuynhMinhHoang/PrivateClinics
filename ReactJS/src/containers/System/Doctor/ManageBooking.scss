@@ -38,6 +38,7 @@
 #customers th {
   border: 1px solid #ddd;
   padding: 8px;
+  text-align: center;
 }
 
 #customers th {
@@ -82,35 +83,20 @@
   justify-content: center;
   border: none;
   cursor: pointer;
-  margin-right: 15px;
-  margin-left: 2px;
-  background-color: #0dcaf0;
+  // margin-right: 15px;
+  // margin-left: 2px;
+  background-color: #e1ab08;
   color: white;
   padding: 5px 10px;
   font-size: 18px;
   font-weight: 500;
   transition: 0.3s;
+  margin: 0px;
 }
 .users-containers button.btn-edit:hover {
   background-color: #0ba3c1;
 }
-.users-containers button.btn-delete {
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  background-color: #ffc107;
-  font-size: 18px;
-  font-weight: 500;
-  color: white;
-  padding: 5px 10px;
-  transition: 0.3s;
-}
-.users-containers button.btn-delete:hover {
-  background-color: #e1ab08;
-}
+
 .editor {
   padding: 0px 100px;
   margin-bottom: 50px;

@@ -102,6 +102,10 @@ const getDescriptionClinicByIdService = (id, location) => {
 const getListBookingService = (idDoctor, date) => {
   return axios.get(`/api/get-list-booking?idDoctor=${idDoctor}&date=${date}`);
 };
+
+const sendRemedyBookingService = (data) => {
+  return axios.post("/api/send-remedy-booking", data);
+};
 export {
   handleLoginAPI,
   getAllUser,
@@ -126,4 +130,5 @@ export {
   getClinicHomeService,
   getDescriptionClinicByIdService,
   getListBookingService,
+  sendRemedyBookingService,
 };

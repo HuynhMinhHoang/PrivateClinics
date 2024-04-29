@@ -125,6 +125,19 @@ let getListBooking = async (req, res) => {
   }
 };
 
+let sendRemedyBooking = async (req, res) => {
+  try {
+    let data = await doctorService.sendRemedyBookingService(req.body);
+    return res.status(200).json(data);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMassage: "Lỗi servers !!!",
+    });
+  }
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctor: getAllDoctor,
@@ -135,4 +148,5 @@ module.exports = {
   getDoctorExtraInfo: getDoctorExtraInfo,
   getProfileDoctor: getProfileDoctor,
   getListBooking: getListBooking,
+  sendRemedyBooking: sendRemedyBooking,
 };

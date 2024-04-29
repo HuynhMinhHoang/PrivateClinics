@@ -6,6 +6,8 @@ import { getDetailInfoDoctorService } from "../../../services/userService";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfo from "./DoctorExtraInfo";
 import { LANGUAGES } from "../../../utils/constant";
+import Comment from "../SocialPlugin/Comment";
+import LikeAndShare from "../SocialPlugin/LikeAndShare";
 
 class DetailDoctor extends Component {
   constructor(props) {
@@ -37,6 +39,10 @@ class DetailDoctor extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {}
   render() {
     let detailDoctor = this.state.detailDoctor;
+    let currentHref =
+      process.env.REACT_APP_IS_LOCALHOST === 1
+        ? "https://www.facebook.com/"
+        : window.location.href;
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -65,6 +71,7 @@ class DetailDoctor extends Component {
                 detailDoctor.MarkDown.description && (
                   <span>{detailDoctor.MarkDown.description}</span>
                 )}
+              <LikeAndShare dataHref={currentHref} />
             </div>
           </div>
           {/* schedule */}
